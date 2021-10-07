@@ -31,9 +31,14 @@ const AddTodo = ({
   return (
     <Form>
       <Form.Group className='mb-3 mx-3'>
-        {loadError && <Alert variant='danger' onClose={()=> setLoadError(false)} dismissible>
-          Cannot add an empty task!
-        </Alert>}
+        {loadError && (
+          <Alert
+            variant='danger'
+            onClose={() => setLoadError(false)}
+            dismissible>
+            Cannot add an empty task!
+          </Alert>
+        )}
         <Form.Label>Add a Task</Form.Label>
         <div className='d-flex' style={{ justifyContent: "space-between" }}>
           <Form.Control
@@ -59,6 +64,10 @@ const AddTodo = ({
 };
 
 const Todo = ({ todos, setTodos, todo }) => {
+  /*   task!
+    1. Add Edit Mode for each Todo
+    2. Add Drag and Drop property for todo items
+  */
   const completeTodoHandler = (e) => {
     const tempTodos = [...todos];
     tempTodos.map((item) => {
@@ -86,14 +95,14 @@ const Todo = ({ todos, setTodos, todo }) => {
         style={{
           fontSize: "15px",
           textDecoration: todo["completed"] ? "line-through" : "none",
-          color: todo["completed"] ? "green" : "black"
+          color: todo["completed"] ? "green" : "black",
         }}>
         {todo["text"]}
       </div>
       <div className='d-flex' style={{ justifyContent: "space-between" }}>
         <Button
           type='reset'
-          variant= {todo["completed"] ? "success" : "primary"}
+          variant={todo["completed"] ? "success" : "primary"}
           className=' d-flex align-items-center justify-content-center mx-1'
           style={{ height: "30px" }}
           onClick={completeTodoHandler}>

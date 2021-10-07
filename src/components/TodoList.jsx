@@ -123,13 +123,13 @@ const TodoList = ({ todos, setTodos, input, setInput }) => {
       <Card.Body>
         <Card.Title
           className='text-center'
-          style={{ color: "black", fontSize: "24px" }}>
-          <h2>Todo List</h2>
+          style={{ color: "black", fontSize: "24px", textTransform: "uppercase"}}>
+          <h2>todo list</h2>
         </Card.Title>
         <Card.Subtitle
           className='text-center mb-3'
           style={{ color: "grey", textTransform: "capitalize" }}>
-          Add your tasks here
+          add your tasks here
         </Card.Subtitle>
         <AddTodo
           todos={todos}

@@ -1,13 +1,22 @@
 import React from "react";
-import { Card, Button, Form, ListGroup } from "react-bootstrap";
+import { Alert, Card, Button, Form, ListGroup } from "react-bootstrap";
 import { MdDone, MdDeleteForever } from "react-icons/md";
 
-const AddTodo = ({ todos, setTodos, input, setInput }) => {
+const AddTodo = ({
+  todos,
+  setTodos,
+  input,
+  setInput,
+  loadError,
+  setLoadError,
+}) => {
   const addTodoHandler = (e) => {
     e.preventDefault();
     if (input.length < 1) {
+      setLoadError(!loadError);
       return;
     }
+    setLoadError(false);
     setTodos([
       ...todos,
       {
@@ -22,6 +31,9 @@ const AddTodo = ({ todos, setTodos, input, setInput }) => {
   return (
     <Form>
       <Form.Group className='mb-3 mx-3'>
+        {loadError && <Alert variant='danger' onClose={()=> setLoadError(false)} dismissible>
+          Cannot add an empty task!
+        </Alert>}
         <Form.Label>Add a Task</Form.Label>
         <div className='d-flex' style={{ justifyContent: "space-between" }}>
           <Form.Control
@@ -117,13 +129,24 @@ const List = ({ todos, setTodos }) => {
   );
 };
 
-const TodoList = ({ todos, setTodos, input, setInput }) => {
+const TodoList = ({
+  todos,
+  setTodos,
+  input,
+  setInput,
+  loadError,
+  setLoadError,
+}) => {
   return (
     <Card style={{ border: "1px solid black" }}>
       <Card.Body>
         <Card.Title
           className='text-center'
-          style={{ color: "black", fontSize: "24px", textTransform: "uppercase"}}>
+          style={{
+            color: "black",
+            fontSize: "24px",
+            textTransform: "uppercase",
+          }}>
           <h2>todo list</h2>
         </Card.Title>
         <Card.Subtitle
@@ -136,6 +159,8 @@ const TodoList = ({ todos, setTodos, input, setInput }) => {
           setTodos={setTodos}
           input={input}
           setInput={setInput}
+          loadError={loadError}
+          setLoadError={setLoadError}
         />
         <List todos={todos} setTodos={setTodos} />
       </Card.Body>

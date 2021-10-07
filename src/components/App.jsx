@@ -5,6 +5,7 @@ import TodoList from "./TodoList";
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState("");
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     fetchTodos();
@@ -36,6 +37,8 @@ const App = () => {
           setTodos={setTodos}
           input={input}
           setInput={setInput}
+          loadError={loadError}
+          setLoadError={setLoadError}
         />
       </div>
     </Container>

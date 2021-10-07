@@ -86,14 +86,14 @@ const Todo = ({ todos, setTodos, todo }) => {
         style={{
           fontSize: "15px",
           textDecoration: todo["completed"] ? "line-through" : "none",
+          color: todo["completed"] ? "green" : "black"
         }}>
         {todo["text"]}
       </div>
       <div className='d-flex' style={{ justifyContent: "space-between" }}>
         <Button
           type='reset'
-          variant='primary'
-          a
+          variant= {todo["completed"] ? "success" : "primary"}
           className=' d-flex align-items-center justify-content-center mx-1'
           style={{ height: "30px" }}
           onClick={completeTodoHandler}>
